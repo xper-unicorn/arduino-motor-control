@@ -1,5 +1,6 @@
 #include <Servo.h>
 
+//kukku
 Servo myservo_1;//Servoオブジェクトの宣言
 Servo myservo_2;
 char data[10];   // 文字列格納用
