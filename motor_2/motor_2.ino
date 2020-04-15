@@ -1,16 +1,22 @@
 #include <Servo.h>
 
-Servo myservo_1;//Servoオブジェクトの宣言
-Servo myservo_2;
+Servo Right_1;//Servoオブジェクトの宣言
+Servo Right_2;
+Servo Left_1;
+Servo Left_2;
 String str;
-String cmds[2] = {"\0"}; // 分割された文字列を格納する配列 
+String cmds[4] = {"\0"}; // 分割された文字列を格納する配列 
   
 void setup() {
   Serial.begin(9600);
-  myservo_1.attach(9);//servo変数をピンに割り当てる、ここでは9番ピン
-  myservo_2.attach(10);
-  myservo_1.write(0);//角度を指定
-  myservo_2.write(0);
+  Right_1.attach(9);//servo変数をピンに割り当てる、ここでは9番ピン
+  Right_2.attach(10);
+  Left_1.attach(11);
+  Left_2.attach(12);
+  Right_1.write(0);
+  Right_2.write(0);
+  Left_1.write(0);//角度を指定
+  Left_2.write(0);
 }
 
 
@@ -44,18 +50,23 @@ void loop() {
     else{
       //Serial.println(cmd);
       int index = split(cmd, ',', cmds);
-      if(index == 2){
+      if(index == 4){
       //Serial.println(index);
   // 結果表示    
         float fcmds_1 = cmds[0].toFloat();
         float fcmds_2 = cmds[1].toFloat();
-     
-        myservo_1.write(fcmds_1);
-        myservo_2.write(fcmds_2);
+        float fcmds_3 = cmds[2].toFloat();
+        float fcmds_4 = cmds[3].toFloat();
+        Right_1.write(fcmds_1);
+        Right_2.write(fcmds_2);
+        Left_1.write(fcmds_3);
+        Left_2.write(fcmds_4);
         cmds[0] = '\0'; 
         cmds[1] = '\0';
-             
-        Serial.print("ok");//送信。
+        cmds[2] = '\0'; 
+        cmds[3] = '\0'; 
+               
+        Serial.print("o");//送信。
         //Serial.println(cmds[0]);
         //Serial.println(cmds[1]);
       }
